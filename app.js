@@ -19,7 +19,7 @@ http.createServer(function (req, res) {
 	        }
 
 	        // 当提交的分支是develop时触发脚本
-	        if(ret.ref === 'refs/heads/develop') {
+	        if(ret && ret.ref === 'refs/heads/develop') {
 	        	console.log('%s auto deploy', new Date().toLocaleString());
 				child_process.exec('sh ' + __dirname + '/hook.sh', function (err, stdout, stderr) {
 				    console.log(err || stdout || stderr);
