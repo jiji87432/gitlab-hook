@@ -1,21 +1,21 @@
 'use strict'
-var http = require('http');
-var child_process = require('child_process');
+const http = require('http');
+const child_process = require('child_process');
 
 http.createServer(function (req, res) {
 	let result = 'success';
 	if(req.url === '/hook' && req.method === 'POST'){ 
-		var arr = [];
+		let arr = [];
 	    req.on("data",function(data){
 	        arr.push(data);
 	    });
 	    req.on("end",function(){
-	        var data= Buffer.concat(arr).toString();
+	        let data= Buffer.concat(arr).toString();
 	        let ret;
 	        try{
 	            ret = JSON.parse(data);
 	        }catch(err){
-	        	result = 'JSON parse error, data: ' + data
+	        	result = 'JSON parse error, data: ' + data;
 	        }
 
 	        // 当提交的分支是develop时触发脚本
