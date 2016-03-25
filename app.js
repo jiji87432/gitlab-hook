@@ -23,9 +23,9 @@ http.createServer(function (req, res) {
 	        	console.log('%s auto deploy', new Date().toLocaleString());
 	        	let options = {
 					encoding: 'utf8',
-				  	timeout:60000
+				  	timeout:600000
 				};
-				child_process.exec('sh ' + __dirname + '/hook.sh', options, function (err, stdout, stderr) {
+				child_process.exec('sh ' + __dirname + '/hook.sh >> hook.log', options, function (err, stdout, stderr) {
 				    console.log(err || stdout || stderr);
 				});
 	        } else {
